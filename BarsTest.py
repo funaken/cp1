@@ -15,6 +15,13 @@ class testBars(unittest.TestCase):
         self.assertEquals(str(Bars(" TiT ").next()), "  T  ")
         self.assertEquals(str(Bars(" iTi ").next()), "iTiTi")
         self.assertEquals(str(Bars(" TTT ").next()), " iii ")
+        self.assertEquals(str(Bars("     ").prev()), "     ")
+        self.assertEquals(str(Bars(" iTi ").prev()), "  i  ")
+        self.assertEquals(str(Bars("iT Ti").prev()), " i i ")
+        self.assertEquals(str(Bars("  i  ").prev()), "  T  ")
+        self.assertEquals(str(Bars("  T  ").prev()), " TiT ")
+        self.assertEquals(str(Bars("iTiTi").prev()), " iTi ")
+        self.assertEquals(str(Bars(" iii ").prev()), " TTT ")
 
     def test_rule(self):
         self.assertEquals(str(Bars(" I  ").next()), "iIi ")
@@ -22,6 +29,11 @@ class testBars(unittest.TestCase):
         self.assertEquals(str(Bars(" Ii ").next()), "iTIi")
         self.assertEquals(str(Bars(" TI ").next()), "  Ii")
         self.assertEquals(str(Bars(" II ").next()), "iTTi")
+        self.assertEquals(str(Bars("iIi ").prev()), " I  ")
+        self.assertEquals(str(Bars("iIIi").prev()), " ii ")
+        self.assertEquals(str(Bars("iTIi").prev()), " Ii ")
+        self.assertEquals(str(Bars("  Ii").prev()), " TI ")
+        self.assertEquals(str(Bars("iTTi").prev()), " II ")
 
     def test_loop(self):
         bs = Bars("Ti  ")

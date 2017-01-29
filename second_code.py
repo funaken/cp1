@@ -49,6 +49,33 @@ class Bars(list):
             self[i] = lst[i]
         return str(self)
 
+    def prev(self):
+        lst = list(self)
+        for i in range(len(self)):
+            cc = self[i]
+            cb = self[i - 1] if i != 0 else self[len(self)-1]
+            cn = self[i + 1] if i != len(self) - 1 else self[0]
+            table = [{ " ":" ", "i":"T", "T":"i", "I":"I" }, { " ":"T", "i":" ", "T":"I", "I":"i" }]
+            count = 0
+            if is_white(cb): count += 1
+            if is_white(cn): count += 1
+            lst[i] = table[count%2][cc]
+
+        for i in range(len(self)):
+            self[i] = lst[i]
+        return str(self)
+
+    def xor(self, i, x):
+        chars = " iTI"
+        self.__setitem__(i, chars[chars.index(self[i]) ^ chars.index(x)])
+
+    def num(self):
+        chars = " iTI"
+        return reduce(lambda a,b: a*4+chars.index(b), self, 0)
+
 def is_black(c):
     return c == "i" or c == "I"
+
+def is_white(c):
+    return c == " " or c == "i"
 
